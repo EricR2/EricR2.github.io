@@ -1,0 +1,128 @@
+* {
+    --red: #EF5454;
+    --yellow: #F1ED09;
+    --blue: #40619A;
+    --grey: #4E4949;
+}
+
+body {
+    background-color: rgba(212, 206, 206, 0.753);
+}
+
+#heading {
+    color: var(--blue);
+    font-family: "Noto Serif", serif;
+    font-size: 96px;
+    line-height: 134.4px;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    font-weight: 500; 
+}
+
+.description {
+    font-family: "Nunito", sans-serif;
+    color: var(--red);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 150%;
+}
+
+nav {
+    background-color: var(--yellow);
+    font-family: "Nunito", sans-serif;
+    font-size: 24px;
+    line-height: 150%;
+}
+
+nav > ul {
+    text-align: center;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 100;
+    line-height: 150%;
+    letter-spacing: 9px;
+    list-style-type: none;
+}
+
+nav > ul > li > a, nav > ul > li > a:visited {
+    color: var(--grey);
+    text-decoration: none;
+}
+
+h1 {
+    color: var(--grey);
+    font-family: "Noto Serif", serif;
+    text-transform: uppercase;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 6px;
+}
+
+h2 {
+    color: var(--grey);
+    font-family: "Noto Serif", serif;
+    text-transform: uppercase;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 6px;
+}
+
+h3 {
+    color: var(--grey);
+    font-family: "Noto Serif", serif;
+    text-transform: uppercase;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 6px;
+}
+
+strong {
+    font-family: "Nunito", sans-serif;
+    color: var(--red);
+    background-color: var(--blue);
+    font-weight: 800;
+}
+
+i {
+    font-family: "Nunito", sans-serif;
+    color: var(--red);
+    background-color: var(--blue);
+    font-weight: 600;
+    font-style: italic;
+}
+
+.description > ul {
+    list-style-type: "↱    ";
+    margin: 10px;
+}
+
+.description > ul > li > a {
+    font-family: "Nunito", sans-serif;
+    color: var(--red);
+    background-color: var(--blue);
+    font-weight: 800;
+    text-decoration: none;
+    transition: color 0.3s ease, background-color 0.3s ease; 
+}
+
+.description > ul > li > a:visited {
+    color: var(--red);
+    background-color: var(--blue);
+}
+
+.description > ul > li > a:hover {
+    color: var(--blue); 
+    background-color: var(--red); 
+}
+
+.description > ul > li > a:active {
+    color: var(--red);
+    background-color: var(--blue);
+}
