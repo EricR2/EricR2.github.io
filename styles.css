@@ -1,0 +1,195 @@
+/* Root styles */
+body {
+    background-color: #252A34;
+    color: #ffffff;
+    font-family: "Source Code Pro", monospace;
+}
+
+/* Directory Bar styles */
+header {
+    background-color: #EAEAEA;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+header nav a {
+    color: #252A34;
+    font-weight: 600;
+    transition: color 0.2s ease, letter-spacing 0.2s ease;
+    line-height: 1.5;
+    display: inline-block;
+}
+
+header nav a:hover {
+    color: #FF2E63;
+    font-weight: 700;
+    letter-spacing: 0.05rem;
+}
+
+/* Content styles */
+#content {
+    padding: 2rem;
+    max-width: 64rem;
+    margin: 0 auto;
+}
+
+.page h2 {
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+}
+
+.page p {
+    margin-bottom: 1rem;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 1rem;
+}
+
+.project-card {
+    background-color: #EAEAEA;
+    padding: 1rem;
+    border-radius: 0.25rem;
+}
+
+.project-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #252A34;
+}
+
+.project-card p {
+    color: #000000;
+}
+
+/* Terminal styles */
+.terminal-container {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    width: 80%;
+    font-weight: 400;
+    overflow: hidden;
+}
+
+#terminal-output {
+    height: 10rem;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    margin-bottom: 0.5rem;
+    color: #08D9D6;
+}
+
+#terminal-output::-webkit-scrollbar {
+    display: none;
+}
+
+.terminal-output {
+    animation: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.terminal-input-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.terminal-input-container .prompt {
+    color: #FF2E63;
+    font-weight: bold;
+}
+
+.terminal-input-container span:not(.prompt) {
+    color: #08D9D6;
+}
+
+#terminal-input {
+    background-color: transparent;
+    color: #08D9D6;
+    width: 100%;
+    outline: none;
+    font-family: "Source Code Pro", monospace;
+    margin: 0;
+    caret-color: transparent; /* Default hidden cursor */
+}
+
+/* Animation for page transitions */
+.page {
+    transition: opacity 0.3s ease;
+}
+
+.page.hidden {
+    opacity: 0;
+    display: none;
+}
+
+/* Button and link styles for interactivity */
+a {
+    cursor: pointer;
+}
+
+a:hover {
+    opacity: 0.9;
+}
+
+#hello-text {
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Logo styles */
+.logo {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Terminal output styles */
+.ls-output {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: "Source Code Pro", monospace;
+}
+
+.ls-output.ls-inline {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0;
+}
+
+.ls-output.ls-inline li {
+    display: inline-block;
+    padding-right: 2rem;
+}
+
+.prompt {
+    color: #FF2E63;
+    font-weight: bold;
+}

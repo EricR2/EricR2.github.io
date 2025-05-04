@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eric Rodriguez - Personal Website</title>
+  <!-- Tailwind CSS CDN for styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts: Source Code Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Main Container -->
+  <div class="flex flex-col min-h-screen">
+    <!-- Directory Bar -->
+    <header class="p-4 flex items-center justify-between">
+      <img src="logo.png" alt="Logo" class="logo">
+      <nav class="flex justify-center space-x-8">
+        <a href="#" onclick="showPage('home')">Home</a>
+        <a href="#" onclick="showPage('about')">About Me</a>
+        <a href="#" onclick="showPage('projects')">Projects</a>
+        <a href="#" onclick="showPage('contact')">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Content Area -->
+    <div class="flex-grow p-8 relative">
+      <div id="content" class="max-w-4xl mx-auto">
+        <!-- Home Page -->
+        <div id="home" class="page">
+          <h2 id="hello-text" class="text-3xl font-bold mb-4 text-center">Hello</h2>
+          <h2 class="text-3xl font-bold mb-4 text-center">I'm Eric Rodriguez</h2>
+        </div>
+        <!-- About Me Page -->
+        <div id="about" class="page hidden">
+          <h2>About Me</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+        <!-- Projects Page -->
+        <div id="projects" class="page hidden">
+          <h2>My Projects</h2>
+          <div class="projects-grid">
+            <div class="project-card">
+              <h3>Project 1</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+            </div>
+            <div class="project-card">
+              <h3>Project 2</h3>
+              <p>Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Contact Page -->
+        <div id="contact" class="page hidden">
+          <h2>Get in Touch</h2>
+          <p>Feel free to reach out to me via email or connect with me on social media.</p>
+          <p>Email: cirerodriguez2003@gmail.com</p>
+          <p>School Email: erodr163@asu.edu</p>
+          <p>GitHub: <a href="https://github.com/EricR2" target="_blank" rel="noopener noreferrer">https://github.com/EricR2</a></p>
+        </div>
+      </div>
+
+      <!-- Terminal (Fixed at Bottom Center) -->
+      <div class="terminal-container">
+        <div id="terminal-output"></div>
+        <div class="terminal-input-container">
+          <span class="prompt">traveler @ home $ </span>
+          <input id="terminal-input" type="text" placeholder="Type cd [page] to navigate or help more..." class="terminal-input">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Terminal Functionality
+    const terminalInput = document.getElementById('terminal-input');
+    const terminalOutput = document.getElementById('terminal-output');
+    const pages = ['home', 'about', 'projects', 'contact'];
+    const files = [...pages, 'treasure.txt'];
+
+    const permissions = {
+      'home': 'drwxr-xr-x',
+      'about': 'drwxr-xr-x',
+      'projects': 'drwxr-xr-x',
+      'contact': 'drwxr-xr-x',
+      'treasure.txt': '-rw-r--r--',
+      '.hidden': '-rw-r--r--',
+      '.xMarkstheSpot': '-rw-r--r--'
+    };
+
+    const owner = 'captain';
+
+    let currentPage = 'home';
+
+    function updatePrompt(page) {
+      currentPage = page;
+      const terminalInputContainer = document.querySelector('.terminal-input-container');
+      terminalInputContainer.querySelector('span.prompt').textContent = `traveler @ ${page} $ `;
+    }
+
+    function showPage(pageId, fromTerminal = false) {
+      document.querySelectorAll('.page').forEach(page => page.classList.add('hidden'));
+      document.getElementById(pageId).classList.remove('hidden');
+      if (fromTerminal) {
+        terminalOutput.innerHTML += `<div class="terminal-output">> Navigated to ${pageId}</div>`;
+        terminalOutput.scrollTop = terminalOutput.scrollHeight;
+      }
+      updatePrompt(pageId);
+    }
+
+    terminalInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const command = terminalInput.value.trim().toLowerCase();
+        terminalOutput.innerHTML += `<div class="terminal-output"><span class="prompt">traveler @ ${currentPage} $ </span>${command}</div>`;
+        if (command === 'help') {
+          terminalOutput.innerHTML += `
+            <div class="terminal-output">
+              Available commands:<br>
+              - <strong>cat [file]</strong>: Display the contents of a file (e.g., cat treasure.txt).<br>
+              - <strong>cd [page]</strong>: Navigate to a page (e.g., cd home, cd about).<br>
+              - <strong>clear</strong>: Clear the terminal.<br>
+              - <strong>help</strong>: Show this help message.<br>
+              - <strong>ls</strong>: List all available pages and files.<br>
+              - <strong>ls -a</strong>: List all files with permissions and owner.<br>
+              - <strong>sudo [command]</strong>: Run command as captain.
+            </div>`;
+        } else if (command.startsWith('cd ')) {
+          const page = command.split(' ')[1];
+          if (pages.includes(page)) {
+            showPage(page, true);
+          } else {
+            terminalOutput.innerHTML += `<div class="terminal-output">> Page not found. Try 'ls' to list available pages.</div>`;
+          }
+        } else if (command === 'ls') {
+          terminalOutput.innerHTML += `
+            <div class="terminal-output">
+              <ul class="ls-output ls-inline">
+                ${files.map(file => `<li>${file}</li>`).join('')}
+              </ul>
+            </div>`;
+        } else if (command === 'ls -a') {
+          terminalOutput.innerHTML += `
+            <div class="terminal-output">
+              <ul class="ls-output">
+                ${Object.keys(permissions).map(file => `<li>${permissions[file]} ${owner} ${file}</li>`).join('')}
+              </ul>
+            </div>`;
+        } else if (command === 'clear') {
+          terminalOutput.innerHTML = '';
+        } else if (command === 'cat treasure.txt') {
+          terminalOutput.innerHTML += `
+            <div class="terminal-output">
+              Arrr, ye scallywag, if treasure ye seek,<br>
+              Ye'll need more than eyes and a cursory peek.<br>
+              Not all that glitters lies in plain sight—<br>
+              Some booty be buried away from the light.<br><br>
+              The cleverest pirates, with stealth and with grace,<br>
+              Hide their gold in a shadowy place.<br>
+              Not beneath waves, nor locked in a chest,<br>
+              But named with a mark that escapes all the rest.<br><br>
+              So cast yer <strong>ls</strong>, but mind what ye lack,<br>
+              Try <strong>-a</strong>, matey, to stay on the track.<br>
+              For files that begin with a dot, ye see,<br>
+              Be where the treasure's a-waitin’ for thee.
+            </div>`;
+        } else if (command === 'sudo cat .xmarksthespot') {
+          terminalOutput.innerHTML += `
+            <div class="terminal-output">
+              <pre>
+                                                            |    |    |                 
+                                                            )_)  )_)  )_)              
+                                                            )___))___))___)\            
+        Of all the treasures in a pirate's life,        )____)____)_____)\\
+        none is rarer or more yours than TIME.          _____|____|____|____\\\__
+                                                ---------\\                   /---------
+                                                ^^^^^ ^^^^^^^^^^^^^^^^^^^^^
+                                                    ^^^^      ^^^^     ^^^    ^^
+                                                        ^^^^      ^^^
+              </pre>
+            </div>`;
+        } else if (command === 'cat .xmarksthespot') {
+          terminalOutput.innerHTML += `
+            <div class="terminal-output">
+              Permission denied. Hint: Try running the command as captain (use <strong>sudo</strong>).
+            </div>`;
+        } else {
+          terminalOutput.innerHTML += `<div class="terminal-output">> Command not found. Type 'help' for a list of commands.</div>`;
+        }
+        terminalInput.value = '';
+        terminalOutput.scrollTop = terminalOutput.scrollHeight;
+      }
+    });
+
+    // Show default cursor on input focus
+    terminalInput.addEventListener('focus', () => {
+      terminalInput.style.caretColor = '#08D9D6'; // Show cursor when focused
+    });
+
+    terminalInput.addEventListener('blur', () => {
+      terminalInput.style.caretColor = 'transparent'; // Hide cursor when unfocused
+    });
+
+    // Initialize with Home page
+    showPage('home');
+
+    // Cycle through "hello" in different languages with fade effect
+    const helloTexts = ["Hello", "Hola", "Bonjour", "Hallo", "Ciao", "こんにちは", "안녕하세요", "你好", "Привет"];
+    const helloTextElement = document.getElementById('hello-text');
+    let helloIndex = 0;
+
+    function updateHelloText() {
+      helloTextElement.style.opacity = 0;
+      setTimeout(() => {
+        helloIndex = (helloIndex + 1) % helloTexts.length;
+        helloTextElement.textContent = helloTexts[helloIndex];
+        helloTextElement.style.opacity = 1;
+      }, 500);
+    }
+
+    setInterval(updateHelloText, 2500);
+  </script>
+</body>
+</html>
