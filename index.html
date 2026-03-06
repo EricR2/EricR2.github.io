@@ -1,231 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eric Rodriguez - Personal Website</title>
-  <!-- Tailwind CSS CDN for styling -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eric Rodriguez – Blog</title>
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Link to external CSS file -->
-  <link rel="stylesheet" href="styles.css">
-  <!-- Google Fonts: Source Code Pro -->
+  <!-- Google Font to keep the vibe -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <!-- Optional: keep your styles.css for brand colors if you want -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root { --bg:#252A34; --ink:#ffffff; --accent:#FF2E63; --mint:#08D9D6; --paper:#EAEAEA; }
+    body { background: var(--bg); color: var(--ink); font-family: "Source Code Pro", monospace; }
+    /* Card look that matches your existing aesthetic */
+    .card { background: #1f242d; border: 1px solid rgba(255,255,255,.05); border-radius: 1rem; }
+    .chip { border: 1px solid rgba(255,255,255,.16); padding: .15rem .5rem; border-radius: .5rem; font-size: .75rem; }
+      /* Animated hello */
+    .hello-wrap { position: relative; }
+    .hello-typing { 
+      display: inline-block;
+      overflow: hidden; 
+      white-space: nowrap; 
+      border-right: 2px solid rgba(255,255,255,.85);
+      letter-spacing: .02em;
+      animation: typing 2.6s steps(12, end) infinite alternate, blink 1s step-end infinite;
+      background: linear-gradient(90deg, var(--mint), var(--accent));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    @keyframes typing { from { width: 0 } to { width: 12ch } }
+    @keyframes blink { 50% { border-color: transparent } }
+  </style>
 </head>
 <body>
-  <!-- Main Container -->
   <div class="flex flex-col min-h-screen">
-    <!-- Directory Bar -->
-    <header class="p-4 flex items-center justify-between">
-      <img src="logo.PNG" alt="Logo" class="logo">
-      <nav class="flex justify-center space-x-8">
-        <a href="#" onclick="showPage('home')">Home</a>
-        <a href="#" onclick="showPage('about')">About Me</a>
-        <a href="#" onclick="showPage('projects')">Projects</a>
-        <a href="#" onclick="showPage('contact')">Contact</a>
-      </nav>
-    </header>
-
-    <!-- Content Area -->
-    <div class="flex-grow p-8 relative">
-      <div id="content" class="max-w-4xl mx-auto">
-        <!-- Home Page -->
-        <div id="home" class="page">
-          <h2 id="hello-text" class="text-3xl font-bold mb-4 text-center">Hello</h2>
-          <h2 class="text-3xl font-bold mb-4 text-center">I'm Eric Rodriguez</h2>
-        </div>
-        <!-- About Me Page -->
-        <div id="about" class="page hidden">
-          <h2>About Me</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-          <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-        <!-- Projects Page -->
-        <div id="projects" class="page hidden">
-          <h2>My Projects</h2>
-          <div class="projects-grid">
-            <div class="project-card">
-              <h3>Project 1</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
-            </div>
-            <div class="project-card">
-              <h3>Project 2</h3>
-              <p>Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
-            </div>
+    <header class="border-b border-white/10">
+      <div class="max-w-6xl mx-auto flex flex-col gap-4 p-6 lg:flex-row lg:items-center lg:justify-between">
+        <div class="flex items-center gap-4">
+          <img src="logo.png" alt="Eric logo" class="w-14 h-14 rounded-full object-cover ring-2 ring-white/10" />
+          <div>
+            <p class="text-sm text-white/70">Eric Rodriguez</p>
+            <p class="text-xs uppercase tracking-[0.3em] text-white/50">Security • Networks • ML</p>
           </div>
         </div>
-        <!-- Contact Page -->
-        <div id="contact" class="page hidden">
-          <h2>Get in Touch</h2>
-          <p>Feel free to reach out to me via email or connect with me on social media.</p>
-          <p>Email: cirerodriguez2003@gmail.com</p>
-          <p>School Email: erodr163@asu.edu</p>
-          <p>GitHub: <a href="https://github.com/EricR2" target="_blank" rel="noopener noreferrer">https://github.com/EricR2</a></p>
-        </div>
+        <nav class="flex flex-wrap gap-6 text-sm uppercase tracking-wide">
+          <a href="#" class="nav-link text-white font-semibold" data-page="home">Home</a>
+          <a href="#" class="nav-link text-white/60 hover:text-white" data-page="about">About</a>
+          <a href="#" class="nav-link text-white/60 hover:text-white" data-page="projects">Projects</a>
+          <a href="#" class="nav-link text-white/60 hover:text-white" data-page="contact">Contact</a>
+        </nav>
       </div>
+    </header>
 
-      <!-- Terminal (Fixed at Bottom Center) -->
-      <div class="terminal-container">
-        <div id="terminal-output"></div>
-        <div class="terminal-input-container">
-          <span class="prompt">traveler @ home $ </span>
-          <input id="terminal-input" type="text" placeholder="Type cd [page] to navigate or help more..." class="terminal-input">
-        </div>
+    <main class="flex-grow w-full">
+      <div class="mx-auto max-w-6xl p-6 lg:p-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <aside class="lg:col-span-1 lg:sticky lg:top-10 self-start space-y-6">
+          <section class="card p-5">
+            <p class="text-base leading-relaxed">
+              Hey — I build secure systems and tinker with networks & ML. This site is my running log:
+              updates, new projects, articles, and job moves. No terminal. Just signal.
+            </p>
+          </section>
+
+          <section class="card p-5 hello-wrap">
+            <div class="text-3xl md:text-4xl font-extrabold tracking-tight">
+              <span class="hello-typing">hello • hola • salut • こんにちは</span>
+            </div>
+          </section>
+
+          <section class="card p-5 space-y-3">
+            <h2 class="text-sm uppercase tracking-wider text-white/60">About me</h2>
+            <p class="text-sm text-white/90">
+              CS (’25→’26) with a cybersecurity focus. I like clean architectures, measurable impact,
+              and teaching what I learn along the way.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="chip">Phoenix, AZ</span>
+              <span class="chip">CSE 365 TA</span>
+              <span class="chip">ClusterDuck</span>
+            </div>
+            <div class="pt-2 flex flex-wrap gap-3 text-sm">
+              <a class="underline hover:no-underline" href="mailto:cirerodriguez2003@gmail.com">Email</a>
+              <a class="underline hover:no-underline" href="mailto:erodr163@asu.edu">School</a>
+              <a class="underline hover:no-underline" href="https://github.com/EricR2" target="_blank" rel="noreferrer noopener">GitHub</a>
+            </div>
+          </section>
+        </aside>
+
+        <section class="lg:col-span-2 space-y-6">
+          <div id="home" class="page space-y-6">
+            <div class="card p-6 text-center space-y-3">
+              <p class="text-xs uppercase tracking-[0.5em] text-white/50">Directory</p>
+              <h2 class="text-3xl font-bold">~/hello</h2>
+              <p class="text-white/80">I'm Eric Rodriguez — shipping resilient systems, watching packet flows, and writing it down.</p>
+            </div>
+            <div id="posts" class="space-y-6"></div>
+          </div>
+
+          <div id="about" class="page hidden card p-6 space-y-4">
+            <h2 class="text-2xl font-bold">About Me</h2>
+            <p>I’m a CS student (’25→’26) leaning hard into cybersecurity, networks, and ML-enabled telemetry. I like translating research into practical systems people can rely on.</p>
+            <p>Right now I’m a CSE 365 TA, helping students reason about threat models and attack surfaces. Outside of school I tinker on ClusterDuck—a mesh of DuckLinks streaming sensor data for resilient comms.</p>
+            <p>If it’s measurable, resilient, and a little weird, I probably want to work on it.</p>
+          </div>
+
+          <div id="projects" class="page hidden card p-6 space-y-6">
+            <h2 class="text-2xl font-bold">Projects</h2>
+            <div class="grid gap-4 md:grid-cols-2">
+              <article class="card p-4 border border-white/5 bg-white/5">
+                <h3 class="text-lg font-semibold">ClusterDuck</h3>
+                <p class="text-sm text-white/80 mt-2">DuckLinks running an ML inference pipeline plus hardened routing so packets keep moving even when links flap.</p>
+                <a class="mt-3 inline-block underline hover:no-underline" href="https://github.com/EricR2" target="_blank" rel="noreferrer noopener">Repository →</a>
+              </article>
+              <article class="card p-4 border border-white/5 bg-white/5">
+                <h3 class="text-lg font-semibold">Network Notebook</h3>
+                <p class="text-sm text-white/80 mt-2">An ongoing write-up series on NAT, DHCP, DNS, and the routing tricks I’ve learned from lab gear and homelabs.</p>
+                <a class="mt-3 inline-block underline hover:no-underline" href="#" rel="noreferrer noopener">Read notes →</a>
+              </article>
+            </div>
+          </div>
+
+          <div id="contact" class="page hidden card p-6 space-y-4">
+            <h2 class="text-2xl font-bold">Contact</h2>
+            <p>Best way to reach me: send a note with context and I’ll follow up fast.</p>
+            <div class="space-y-2 text-sm">
+              <a class="underline hover:no-underline block" href="mailto:cirerodriguez2003@gmail.com">cirerodriguez2003@gmail.com</a>
+              <a class="underline hover:no-underline block" href="mailto:erodr163@asu.edu">erodr163@asu.edu</a>
+              <a class="underline hover:no-underline block" href="https://github.com/EricR2" target="_blank" rel="noreferrer noopener">GitHub @EricR2</a>
+            </div>
+          </div>
+        </section>
       </div>
-    </div>
+    </main>
   </div>
 
   <script>
-    // Terminal Functionality
-    const terminalInput = document.getElementById('terminal-input');
-    const terminalOutput = document.getElementById('terminal-output');
-    const pages = ['home', 'about', 'projects', 'contact'];
-    const files = [...pages, 'treasure.txt'];
+    const navLinks = document.querySelectorAll('[data-page]');
+    const pages = document.querySelectorAll('.page');
 
-    const permissions = {
-      'home': 'drwxr-xr-x',
-      'about': 'drwxr-xr-x',
-      'projects': 'drwxr-xr-x',
-      'contact': 'drwxr-xr-x',
-      'treasure.txt': '-rw-r--r--',
-      '.hidden': '-rw-r--r--',
-      '.xMarkstheSpot': '-rw-r--r--'
+    function showPage(pageId) {
+      pages.forEach((page) => {
+        page.classList.toggle('hidden', page.id !== pageId);
+      });
+      navLinks.forEach((link) => {
+        const active = link.dataset.page === pageId;
+        link.classList.toggle('text-white', active);
+        link.classList.toggle('text-white/60', !active);
+        link.classList.toggle('font-semibold', active);
+      });
+    }
+
+    navLinks.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        showPage(link.dataset.page);
+      });
+    });
+
+    const POSTS = [
+      {
+        title: "Launched the blog layout",
+        date: "2025-10-20",
+        type: "update",
+        blurb: "Simplified the site: left rail intro, right rail for posts. Terminal retired.",
+        link: null
+      },
+      {
+        title: "ClusterDuck: ML + Network pipeline",
+        date: "2025-10-16",
+        type: "project",
+        blurb: "Prototyped inference on DuckLinks and tightened the mesh routing for reliability.",
+        link: "https://github.com/EricR2"
+      },
+      {
+        title: "Notes: How NAT, DHCP, and DNS dance",
+        date: "2025-10-12",
+        type: "article",
+        blurb: "Short read connecting home-network building blocks and where packets actually go.",
+        link: "#"
+      },
+      {
+        title: "Accepted: Risk Framework Analyst intern (Wells Fargo)",
+        date: "2024-12-11",
+        type: "job",
+        blurb: "Focus on controls and cloud risk. Lots to learn, lots to build.",
+        link: "#"
+      }
+    ];
+
+    const TYPE_STYLES = {
+      update: { label: "Update", hue: "bg-emerald-500/20 text-emerald-200 border-emerald-500/30" },
+      project: { label: "Project", hue: "bg-sky-500/20 text-sky-200 border-sky-500/30" },
+      article: { label: "Article", hue: "bg-indigo-500/20 text-indigo-200 border-indigo-500/30" },
+      job: { label: "Job", hue: "bg-amber-500/20 text-amber-200 border-amber-500/30" }
     };
 
-    const owner = 'captain';
-
-    let currentPage = 'home';
-
-    function updatePrompt(page) {
-      currentPage = page;
-      const terminalInputContainer = document.querySelector('.terminal-input-container');
-      terminalInputContainer.querySelector('span.prompt').textContent = `traveler @ ${page} $ `;
+    function fmtDate(iso) {
+      const d = new Date(iso + 'T00:00:00');
+      return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: '2-digit' });
     }
 
-    function showPage(pageId, fromTerminal = false) {
-      document.querySelectorAll('.page').forEach(page => page.classList.add('hidden'));
-      document.getElementById(pageId).classList.remove('hidden');
-      if (fromTerminal) {
-        terminalOutput.innerHTML += `<div class="terminal-output">> Navigated to ${pageId}</div>`;
-        terminalOutput.scrollTop = terminalOutput.scrollHeight;
-      }
-      updatePrompt(pageId);
+    function render() {
+      const root = document.getElementById('posts');
+      root.innerHTML = '';
+      POSTS
+        .slice()
+        .sort((a,b) => new Date(b.date) - new Date(a.date))
+        .forEach(post => {
+          const t = TYPE_STYLES[post.type] || TYPE_STYLES.update;
+          const card = document.createElement('article');
+          card.className = 'card p-5';
+          card.innerHTML = `
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="text-lg font-bold leading-tight">${post.title}</h3>
+                <p class="mt-2 text-sm text-white/80">${post.blurb}</p>
+                ${post.link ? `<a class="mt-3 inline-block underline hover:no-underline" href="${post.link}" target="_blank" rel="noreferrer noopener">Learn more →</a>` : ''}
+              </div>
+              <div class="text-right shrink-0 flex flex-col items-end gap-2">
+                <time class="text-xs text-white/60">${fmtDate(post.date)}</time>
+                <span class="chip ${t.hue}">${t.label}</span>
+              </div>
+            </div>`;
+          root.appendChild(card);
+        });
     }
 
-    // tutorial followed: https://www.youtube.com/watch?v=KtYby2QN0kQ 
-    terminalInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        const command = terminalInput.value.trim().toLowerCase();
-        terminalOutput.innerHTML += `<div class="terminal-output"><span class="prompt">traveler @ ${currentPage} $ </span>${command}</div>`;
-        if (command === 'help') {
-          terminalOutput.innerHTML += `
-            <div class="terminal-output">
-              Available commands:<br>
-              - <strong>cat [file]</strong>: Display the contents of a file (e.g., cat treasure.txt).<br>
-              - <strong>cd [page]</strong>: Navigate to a page (e.g., cd home, cd about).<br>
-              - <strong>clear</strong>: Clear the terminal.<br>
-              - <strong>help</strong>: Show this help message.<br>
-              - <strong>ls</strong>: List all available pages and files.<br>
-              - <strong>ls -a</strong>: List all files with permissions and owner.<br>
-              - <strong>sudo [command]</strong>: Run command as captain.
-            </div>`;
-        } else if (command.startsWith('cd ')) {
-          const page = command.split(' ')[1];
-          if (pages.includes(page)) {
-            showPage(page, true);
-          } else {
-            terminalOutput.innerHTML += `<div class="terminal-output">> Page not found. Try 'ls' to list available pages.</div>`;
-          }
-        } else if (command === 'ls') {
-          terminalOutput.innerHTML += `
-            <div class="terminal-output">
-              <ul class="ls-output ls-inline">
-                ${files.map(file => `<li>${file}</li>`).join('')}
-              </ul>
-            </div>`;
-        } else if (command === 'ls -a') {
-          terminalOutput.innerHTML += `
-            <div class="terminal-output">
-              <ul class="ls-output">
-                ${Object.keys(permissions).map(file => `<li>${permissions[file]} ${owner} ${file}</li>`).join('')}
-              </ul>
-            </div>`;
-        } else if (command === 'clear') {
-          terminalOutput.innerHTML = '';
-        } else if (command === 'cat treasure.txt') {
-          terminalOutput.innerHTML += `
-            <div class="terminal-output">
-              Arrr, ye scallywag, if treasure ye seek,<br>
-              Ye'll need more than eyes and a cursory peek.<br>
-              Not all that glitters lies in plain sight—<br>
-              Some booty be buried away from the light.<br><br>
-              The cleverest pirates, with stealth and with grace,<br>
-              Hide their gold in a shadowy place.<br>
-              Not beneath waves, nor locked in a chest,<br>
-              But named with a mark that escapes all the rest.<br><br>
-              So cast yer <strong>ls</strong>, but mind what ye lack,<br>
-              Try <strong>-a</strong>, matey, to stay on the track.<br>
-              For files that begin with a dot, ye see,<br>
-              Be where the treasure's a-waitin’ for thee.
-            </div>`;
-        } else if (command === 'sudo cat .xmarksthespot') {
-          terminalOutput.innerHTML += `
-            <div class="terminal-output">
-              <pre>
-                                                            |    |    |                 
-                                                            )_)  )_)  )_)              
-                                                            )___))___))___)\            
-        Of all the treasures in a pirate's life,        )____)____)_____)\\
-        none is rarer or more yours than TIME.          _____|____|____|____\\\__
-                                                ---------\\                   /---------
-                                                ^^^^^ ^^^^^^^^^^^^^^^^^^^^^
-                                                    ^^^^      ^^^^     ^^^    ^^
-                                                        ^^^^      ^^^
-              </pre>
-            </div>`;
-        } else if (command === 'cat .xmarksthespot') {
-          terminalOutput.innerHTML += `
-            <div class="terminal-output">
-              Permission denied. Hint: Try running the command as captain (use <strong>sudo</strong>).
-            </div>`;
-        } else {
-          terminalOutput.innerHTML += `<div class="terminal-output">> Command not found. Type 'help' for a list of commands.</div>`;
-        }
-        terminalInput.value = '';
-        terminalOutput.scrollTop = terminalOutput.scrollHeight;
-      }
-    });
-
-    // Show default cursor on input focus
-    terminalInput.addEventListener('focus', () => {
-      terminalInput.style.caretColor = '#08D9D6'; // Show cursor when focused
-    });
-
-    terminalInput.addEventListener('blur', () => {
-      terminalInput.style.caretColor = 'transparent'; // Hide cursor when unfocused
-    });
-
-    // Initialize with Home page
+    render();
     showPage('home');
-
-    // Cycle through "hello" in different languages with fade effect
-    const helloTexts = ["Hello", "Hola", "Bonjour", "Hallo", "Ciao", "こんにちは", "안녕하세요", "你好", "Привет"];
-    const helloTextElement = document.getElementById('hello-text');
-    let helloIndex = 0;
-
-    function updateHelloText() {
-      helloTextElement.style.opacity = 0;
-      setTimeout(() => {
-        helloIndex = (helloIndex + 1) % helloTexts.length;
-        helloTextElement.textContent = helloTexts[helloIndex];
-        helloTextElement.style.opacity = 1;
-      }, 500);
-    }
-
-    setInterval(updateHelloText, 2500);
   </script>
 </body>
 </html>
